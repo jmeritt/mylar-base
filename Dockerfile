@@ -13,5 +13,9 @@ RUN cd ~ && \
 
 EXPOSE 8090
 
+VOLUME /comics
+VOLUME /downloads
+VOLUME /programdata
+
 CMD python ~/mylar/Mylar.py 
 
