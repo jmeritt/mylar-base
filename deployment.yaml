@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mylar
+  labels:
+    app: mylar
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mylar
+  template:
+    metadata:
+      labels:
+        app: mylar
+    spec:
+      initContainers:
+      - name: change-priveleges
+        image: busybox
+        command: ["/bin/sh"]
+        args: ["-c", "chown -R 2580:2580 /programdata"]
+        volumeMounts:
+        - name: programdata
+          mountPath: /programdata
+      containers:
+      - name: mylar
+        image: jmeritt/mylar
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8090
+        volumeMounts:
+        - name: programdata
+          mountPath: /programdata
+        - name: comics
+          mountPath: /comics
+        - name: downloads
+          mountPath: /downloads
+      volumes:
+      - name: programdata
+        emptyDir: {}
+      - name: comics
+        emptyDir: {}
+      - name: downloads
+        emptyDir: {}

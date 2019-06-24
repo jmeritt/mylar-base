@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: mylar
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  rules:
+  - host: mylar.local
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: mylar
+          servicePort: 8090
+  
