@@ -17,5 +17,5 @@ VOLUME /comics
 VOLUME /downloads
 VOLUME /programdata
 
-CMD python ~/mylar/Mylar.py 
+CMD python ~/mylar/Mylar.py --nolaunch --datadir /programdata
 
