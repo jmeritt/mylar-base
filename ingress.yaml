@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: mylar
   annotations:
-    kubernetes.io/ingress.class: traefik
+    kubernetes.io/ingress.class: nginx
 spec:
   rules:
   - host: mylar.local
